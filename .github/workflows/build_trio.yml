@@ -190,7 +190,7 @@ jobs:
   build:
     name: Build
     needs: [check_certs, check_status]
-    runs-on: macos-26
+    runs-on: ${{ vars.BUILD_RUNNER || 'xcode-27' }}
     permissions:
       contents: write
     if:
