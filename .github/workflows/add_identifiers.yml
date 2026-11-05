@@ -3,6 +3,9 @@ run-name: Add Identifiers (${{ github.ref_name }})
 on:
   workflow_dispatch:
 
+env:
+  MATCH_REPO: ${{ vars.MATCH_REPO || format('{0}/Match-Secrets', github.repository_owner) }}
+
 jobs:
   validate:
     name: Validate
