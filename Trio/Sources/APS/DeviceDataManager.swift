@@ -74,6 +74,7 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
 
     var pumpManager: PumpManagerUI? {
         didSet {
+            PumpArchiveManager.shared.pumpManagerChanged(pumpManager)
             if let oldValue = oldValue {
                 trioAlertManager?.unregister(managerIdentifier: oldValue.pluginIdentifier)
             }
@@ -590,6 +591,7 @@ extension BaseDeviceDataManager: PumpManagerDelegate {
                 )
                 lastEventDate = events.last?.date
                 completion(nil)
+                PumpArchiveManager.shared.pumpEventsReported(events)
                 // the pump withdrew these events; remove their NS treatments
                 if !purgedUploadedIds.isEmpty, let nightscoutManager = resolver?.resolve(NightscoutManager.self) {
                     // detached: remote cleanup must not delay the next event batch

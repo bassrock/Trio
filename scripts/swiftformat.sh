@@ -123,5 +123,6 @@ trailingClosures \
 --exclude AccuChekKit \
 --exclude EversenseKit \
 --exclude SyaiKit \
---exclude TandemKit
+--exclude TandemKit \
+--exclude PumpArchiveKit
       

@@ -17,6 +17,8 @@ struct ServicesView: BaseView {
     @Environment(\.colorScheme) var colorScheme
     @Environment(AppState.self) var appState
 
+    @State private var showPumpArchive = false
+
     var body: some View {
         Form {
             Section(
@@ -27,9 +29,14 @@ struct ServicesView: BaseView {
                     if HKHealthStore.isHealthDataAvailable() {
                         Text("Apple Health").navigationLink(to: .healthkit, from: self)
                     }
+                    Button("Pump Archive") { showPumpArchive = true }
+                        .foregroundColor(.primary)
                 }
             )
             .listRowBackground(Color.chart)
+        }
+        .sheet(isPresented: $showPumpArchive) {
+            PumpArchiveSettingsView(service: PumpArchiveManager.shared.service) { showPumpArchive = false }
         }
         .scrollContentBackground(.hidden)
         .background(appState.trioBackgroundColor(for: colorScheme))
