@@ -58,4 +58,7 @@
    <FileRef
       location = "group:TandemKit/TandemKit.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:PumpArchiveKit/PumpArchiveKit.xcodeproj">
+   </FileRef>
 </Workspace>

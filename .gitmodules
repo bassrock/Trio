@@ -56,3 +56,6 @@
 	path = TandemKit
 	url = https://github.com/jwoglom/TandemKit.git
 	branch = dev
+[submodule "PumpArchiveKit"]
+	path = PumpArchiveKit
+	url = https://github.com/bassrock/PumpArchiveKit.git

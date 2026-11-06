@@ -82,6 +82,10 @@ final class BaseCarbsStorage: CarbsStorage, Injectable {
 
         await saveCarbsToCoreData(entries: entriesToStore, areFetchedFromRemote: areFetchedFromRemote)
         await saveCarbEquivalents(entries: entriesToStore, areFetchedFromRemote: areFetchedFromRemote)
+
+        if !areFetchedFromRemote {
+            PumpArchiveManager.shared.carbsEntered(entriesToStore)
+        }
     }
 
     private func filterRemoteEntries(entries: [CarbsEntry]) async throws -> [CarbsEntry] {
