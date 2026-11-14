@@ -45,7 +45,9 @@ final class PumpArchiveManager: StatefulPluggableDelegate {
     /// The pump driver reported new events: passes their doses on, which also checks whether an
     /// upload is due.
     func pumpEventsReported(_ events: [NewPumpEvent]) {
-        service.uploadDoseData(created: events.compactMap(\.dose), deleted: []) { _ in }
+        let doses = events.compactMap(\.dose)
+        let service = self.service
+        Task { try? await service.uploadDoseData(created: doses, deleted: []) }
     }
 
     /// The user saved carbs in Trio (not ones fetched from Nightscout).
@@ -54,7 +56,8 @@ final class PumpArchiveManager: StatefulPluggableDelegate {
             .filter { $0.isFPU != true && $0.carbs > 0 }
             .map { $0.convertSyncCarb() }
         guard !carbs.isEmpty else { return }
-        service.uploadCarbData(created: carbs, updated: [], deleted: []) { _ in }
+        let service = self.service
+        Task { try? await service.uploadCarbData(created: carbs, updated: [], deleted: []) }
     }
 
     // MARK: StatefulPluggableDelegate

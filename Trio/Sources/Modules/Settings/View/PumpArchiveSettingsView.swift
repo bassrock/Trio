@@ -11,7 +11,7 @@ struct PumpArchiveSettingsView: UIViewControllerRepresentable {
     func makeCoordinator() -> Coordinator { Coordinator(onDone: onDone) }
 
     func makeUIViewController(context: Context) -> UIViewController {
-        var viewController = service.settingsViewController(colorPalette: .default)
+        var viewController = service.settingsViewController(colorPalette: .default, allowDebugFeatures: false)
         viewController.completionDelegate = context.coordinator
         return viewController
     }
