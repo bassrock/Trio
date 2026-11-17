@@ -65,7 +65,7 @@
 [submodule "TandemKit"]
 	path = TandemKit
 	url = https://github.com/jwoglom/TandemKit.git
-	branch = trio-next-dev
+	branch = next-dev
 [submodule "PumpArchiveKit"]
 	path = PumpArchiveKit
 	url = https://github.com/bassrock/PumpArchiveKit.git
